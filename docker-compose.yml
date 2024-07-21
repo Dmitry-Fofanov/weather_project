@@ -1,0 +1,7 @@
+services:
+  backend:
+    build:
+      context: weather_project/
+      dockerfile: Dockerfile
+      network: host
+    network_mode: host

@@ -1,0 +1,31 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h1>Погода для города: {{ data.city }}, {{ data.country }}</h1>
+<p>Текущая температура: {{ data.current_temperature }}°C</p>
+
+<h2>Прогноз на ближайшую неделю</h2>
+<canvas id="temperatureChart" style="margin-bottom: 20px;"></canvas>
+<script>
+  const ctx = document.getElementById('temperatureChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: {{ data.times|safe }},
+      datasets: [{
+        label: 'Температура',
+        data: {{ data.temperatures|safe }},
+        borderColor: 'rgba(75, 192, 192, 1)',
+        tension: 0.1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+<a href="/" style="padding: 10px 20px; border: solid; border-radius: 10px; margin-top: 10px;">На главную</a>
